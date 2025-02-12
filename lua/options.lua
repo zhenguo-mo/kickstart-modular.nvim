@@ -18,7 +18,7 @@ vim.opt.showmode = false
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.opt.clipboard = 'unnamedplus'
+-- vim.opt.clipboard = 'unnamedplus'
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -65,3 +65,6 @@ vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 -- vim: ts=2 sts=2 sw=2 et
+
+-- color column at 80
+vim.opt.colorcolumn = '80'

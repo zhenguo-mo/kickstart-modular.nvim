@@ -6,8 +6,13 @@ vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Go back to directory from nvim buffer.
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
+vim.keymap.set('n', '<leader>mv', vim.cmd.Ex, { desc = 'Exit to netrw' })
 
+-- Signature help when typing
+vim.keymap.set('i', '<c-s>', vim.lsp.buf.signature_help)
+
+-- Start tmux sessions on common workspaces a local version of <a href=https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer />
+vim.keymap.set('n', '<leader>uts', '<cmd>silent !tmux neww tmux-sessionizer<CR>')
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
@@ -52,3 +57,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- vim: ts=2 sts=2 sw=2 et
+
+-- Remaps to copy into OS clipboard
+
+vim.keymap.set('n', '<leader>y', '"+y')
+vim.keymap.set('n', '<leader>Y', '"+yg_')
+vim.keymap.set('v', '<leader>y', '"+y')
+vim.keymap.set('v', '<leader>Y', '"+yg_')
+
+-- Paste from clipboard
+
+vim.keymap.set('n', '<leader>p', '"+p')
+vim.keymap.set('n', '<leader>P', '"+P')
