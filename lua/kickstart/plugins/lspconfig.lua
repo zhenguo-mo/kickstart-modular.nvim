@@ -147,7 +147,11 @@ return {
       --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-      require('lspconfig').gdscript.setup(capabilities)
+      vim.lsp.config('gdscript', {
+        capabilities = capabilities
+      })
+
+      vim.lsp.enable('gdscript')
 
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -244,7 +248,8 @@ return {
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             -- Don't call setup for JDTLS Java LSP because the hook is in nvim-jdtls
             if server_name ~= 'jdtls' then
-              require('lspconfig')[server_name].setup(server)
+              vim.lsp.config(server_name, server)
+              vim.lsp.enable(server_name)
             end
           end,
         },

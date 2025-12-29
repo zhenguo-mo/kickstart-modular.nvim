@@ -105,5 +105,15 @@ require 'lazy-bootstrap'
 -- [[ Configure and install plugins ]]
 require 'lazy-plugins'
 
+-- Enable neovim to be the external editor for Godot, if the cwd has a project.godot file
+if vim.fn.filereadable(vim.fn.getcwd() .. "/project.godot") == 1 then
+  local addr = "./godot.pipe"
+  if vim.fn.has("win32") == 1 then
+    -- Windows can't pipe so use localhost. Make sure this is configured in Godot
+    addr = "127.0.0.1:6004"
+  end
+  vim.fn.serverstart(addr)
+end
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

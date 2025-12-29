@@ -4,7 +4,8 @@ return {
     build = ':TSUpdate',
     branch = 'master',
     opts = {
-      ensure_installed = { 'gdscript', 'godot_resource', 'gdshader', 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
+      ensure_installed = { 'gdscript', 'godot_resource', 'gdshader', 'bash',
+        'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -14,7 +15,11 @@ return {
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
         additional_vim_regex_highlighting = { 'ruby', 'java', 'xml', 'lua' },
       },
-      indent = { enable = true, disable = { 'ruby', 'java', 'xml', 'lua' } },
+      indent = {
+        enable = true,
+        disable = { 'ruby', 'java', 'xml', 'lua',
+          'gdscript', 'godot_resource', 'gdshader' }
+      },
     },
     config = function(_, opts)
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
