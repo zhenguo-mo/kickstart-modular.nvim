@@ -13,6 +13,16 @@ vim.keymap.set('i', '<c-s>', vim.lsp.buf.signature_help)
 
 -- Start tmux sessions on common workspaces a local version of <a href=https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer />
 vim.keymap.set('n', '<leader>uts', '<cmd>silent !tmux neww tmux-sessionizer<CR>')
+
+-- Show installed plugins (vim.pack browser, offline)
+vim.keymap.set('n', '<leader>up', function()
+  vim.pack.update(nil, { offline = true })
+end, { desc = 'Show installed [P]lugins' })
+
+-- Fetch and review plugin updates (interactive: :w to apply, :q to discard)
+vim.keymap.set('n', '<leader>uP', function()
+  vim.pack.update()
+end, { desc = 'Update [P]lugins (review)' })
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })

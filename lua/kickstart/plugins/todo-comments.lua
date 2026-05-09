@@ -1,5 +1,15 @@
--- Highlight todo, notes, etc in comments
-return {
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
-}
--- vim: ts=2 sts=2 sw=2 et
+return function()
+  vim.pack.add({
+    { src = 'https://github.com/folke/todo-comments.nvim' },
+  }, { load = function() end })
+
+  require('lz.n').load {
+    {
+      'todo-comments.nvim',
+      event = 'VimEnter',
+      after = function()
+        require('todo-comments').setup { signs = false }
+      end,
+    },
+  }
+end
